@@ -11,7 +11,7 @@
 
 ## One-time account setup
 
-Run [`sql/00_setup.sql`](https://github.com/sfc-gh-makukreja/spn-demo-creator/blob/main/sql/00_setup.sql) as ACCOUNTADMIN. It creates:
+Run [`spn-demo-creator/sql/00_setup.sql`](https://github.com/sfc-gh-makukreja/spn-demo-creator/blob/main/spn-demo-creator/sql/00_setup.sql) as ACCOUNTADMIN. It creates:
 
 - database `COWORK_DEMOS`
 - warehouse `COWORK_DEMO_WH`

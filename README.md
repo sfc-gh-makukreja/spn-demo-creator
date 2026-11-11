@@ -21,8 +21,8 @@ In CoCo Desktop, open **Agent Settings > Skills**, click **+** next to **GitHub 
 
 ## Before you run it
 
-1. Read `references/prerequisites.md`.
-2. As ACCOUNTADMIN, run `sql/00_setup.sql` (database, warehouse, optional email tool).
+1. Read `spn-demo-creator/references/prerequisites.md`.
+2. As ACCOUNTADMIN, run `spn-demo-creator/sql/00_setup.sql` (database, warehouse, optional email tool).
 3. Make sure your connection points at the account you want to build in. The skill asks you to confirm.
 
 ## Two modes
@@ -33,14 +33,16 @@ In CoCo Desktop, open **Agent Settings > Skills**, click **+** next to **GitHub 
 ## Layout
 
 ```
-SKILL.md                         the workflow
-sql/00_setup.sql                 one-time account setup
-sql/01_roles.sql                 optional roles for sharing a demo
-sql/99_teardown.sql              remove a demo
-references/prerequisites.md
-references/data-templates.md
-references/agent-spec-template.yaml
-references/demo-script-template.md
+spn-demo-creator/
+  SKILL.md                       the workflow
+  sql/00_setup.sql               one-time account setup
+  sql/01_roles.sql               optional roles for sharing a demo
+  sql/99_teardown.sql            remove a demo
+  references/prerequisites.md
+  references/data-templates.md
+  references/agent-spec-template.yaml
+  references/demo-script-template.md
+docs/                            MkDocs site
 ```
 
 ## Notes

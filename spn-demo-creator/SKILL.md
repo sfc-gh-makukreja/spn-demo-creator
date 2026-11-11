@@ -1,6 +1,6 @@
 ---
 name: spn-demo-creator
-description: "Create Snowflake CoWork demos with synthetic data, a Cortex Agent and a ready-to-present demo script, for a named customer or for a whole industry. Use when: creating a CoWork demo, building a customer demo, partner demo, industry demo, demo creation, demo script, demo talk track. Triggers: CoWork demo, create demo, build demo, customer demo, industry demo, partner demo, demo for."
+description: "Create Snowflake CoWork demos with synthetic data, a semantic view, a Cortex Search service, a Cortex Agent and a ready-to-present demo script, for a named customer or for a whole industry. Use this skill whenever the user wants to build, create or prepare a demo, a POC story, a talk track or a use case for Snowflake CoWork, Snowflake Intelligence or Cortex Agents, even if they only name a company or industry and do not say CoWork. Triggers: CoWork demo, Snowflake Intelligence demo, create demo, build demo, customer demo, industry demo, partner demo, demo script, demo for."
 ---
 
 # CoWork Demo Creator
@@ -11,6 +11,10 @@ Create an end-to-end Snowflake CoWork demo: realistic synthetic data, a semantic
 |---|---|---|
 | **Industry** | No named customer yet, or a workshop or lunch and learn | Industry trends, common data pain points, typical personas |
 | **Customer** | A named prospect or customer | Company website, public news, optional audience research |
+
+## Where files are
+
+`references/` and `sql/` are folders next to this SKILL.md. Resolve them against this skill's own folder, not the current project, because the skill may be installed from a cache and the project folder will not contain them.
 
 ## Prerequisites
 
@@ -60,7 +64,7 @@ Ask whether the user wants to tailor the demo to specific attendees.
 - **Industry mode:** describe the roles in the room (for example "partner SEs and solution architects"). Do not research named individuals.
 - **Customer mode:** only research people if the user provides them. Use only public professional information. Do not infer anything sensitive about a person. If the user prefers, describe the roles instead.
 
-Present a short audience brief: roles, priorities, likely pain points, preferred level of detail, what to avoid. **STOP for approval.**
+Present a short audience brief: roles, priorities, likely pain points, preferred level of detail, what to avoid. ⚠️ **STOP for approval.**
 
 ### Step 3: Define the use case
 
@@ -77,7 +81,7 @@ Present a short audience brief: roles, priorities, likely pain points, preferred
    - Structured questions (Cortex Analyst), unstructured questions (Cortex Search), combined questions
    - Target personas
 
-**STOP for approval before building.**
+⚠️ **STOP for approval before building.**
 
 ### Step 4: Create the schema
 
@@ -103,7 +107,7 @@ Load `references/data-templates.md`.
   Write each driver with target rates, such as "segment A ~45%, segment B ~12%, baseline ~20%". These numbers are the contract for Step 6.
 - 4 to 6 structured tables with domain terminology, time series and dimensions. Add pre-computed helper columns (an age group, a day of week) so the agent can find the drivers easily.
 - 1 or 2 unstructured tables (feedback, reports, incident notes) with a text column for search and filterable metadata (date, category, sentiment, source).
-- Present table names, columns and types. **STOP for approval.**
+- Present table names, columns and types. ⚠️ **STOP for approval.**
 
 ### Step 6: Generate synthetic data
 
@@ -112,7 +116,7 @@ Load `references/data-templates.md`.
 - Plant the story contract from Step 5. Do NOT use plain random values for the driver columns. Use one random roll per row and thresholds per segment (see `references/data-templates.md`) so the target rates hold.
 - Create tables one at a time, in dependency order (dimensions first). Load dimensions in parallel, then load the fact tables in order, because facts depend on dimension helper columns.
 - Execute the CREATE TABLE and INSERT statements, then verify row counts.
-- **Verify the patterns.** Run one GROUP BY query per act (overall split, the ruled-out dimension, each driver) and compare to the target rates. If they are significantly off, adjust the thresholds and reload. **STOP and show the user the verification results.**
+- **Verify the patterns.** Run one GROUP BY query per act (overall split, the ruled-out dimension, each driver) and compare to the target rates. If they are significantly off, adjust the thresholds and reload. ⚠️ **STOP and show the user the verification results.**
 
 ### Step 7: Create the semantic view
 
@@ -184,7 +188,7 @@ If the demo will be used by other people, create an admin role and a user role (
 
 ### Step 11: Demo script
 
-Load `references/demo-script-template.md`. Write a timed script: opening (30 s), context (1 min), questions 1 and 2 (2 min), questions 3 and 4 (3 min), questions 5 and 6 (3 min), closing (1 min). For each question include the exact wording, the expected answer, talking points and the transition. Save it as a local file. **STOP for review.**
+Load `references/demo-script-template.md`. Write a timed script: opening (30 s), context (1 min), questions 1 and 2 (2 min), questions 3 and 4 (3 min), questions 5 and 6 (3 min), closing (1 min). For each question include the exact wording, the expected answer, talking points and the transition. Save it as a local file. ⚠️ **STOP for review.**
 
 ## Stopping points
 
