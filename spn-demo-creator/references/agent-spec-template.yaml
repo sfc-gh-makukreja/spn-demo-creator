@@ -56,7 +56,7 @@ tool_resources:
     semantic_view: "<DB>.<SCHEMA>.<SEMANTIC_VIEW>"
     execution_environment:
       type: "warehouse"
-      warehouse: "COWORK_DEMO_WH"
+      warehouse: "<WAREHOUSE>"
   Search:
     name: "<DB>.<SCHEMA>.<SEARCH_SERVICE>"
     max_results: "5"
@@ -64,10 +64,10 @@ tool_resources:
     id_column: "DOC_ID"
     execution_environment:
       type: "warehouse"
-      warehouse: "COWORK_DEMO_WH"
+      warehouse: "<WAREHOUSE>"
   send_email:
     type: "procedure"
     execution_environment:
       type: "warehouse"
-      warehouse: "COWORK_DEMO_WH"
-    identifier: "COWORK_DEMOS.PUBLIC.SEND_MAIL"
+      warehouse: "<WAREHOUSE>"
+    identifier: "<DATABASE>.PUBLIC.SEND_MAIL"
