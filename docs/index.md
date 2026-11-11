@@ -28,7 +28,7 @@ Every demo follows the same three acts, so it lands in about ten minutes.
 1. [Prerequisites](getting-started.md)
 2. [Install the skill](install.md)
 3. Follow the [step by step guide](steps/index.md)
-4. [Run the demo](run-the-demo.md)
+4. [Test and publish](steps/12-publish.md)
 
 !!! note "Unofficial"
     This is a community skill for Snowflake partners. It is not supported by Snowflake. All data it creates is synthetic.

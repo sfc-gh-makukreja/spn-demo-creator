@@ -55,3 +55,11 @@ Go to `https://ai.snowflake.com`, sign in with your account identifier, then cho
 
 !!! warning "Gotcha: the sign-in page shows your account"
     The sign-in screens show your account identifier, username and URL. Do not publish screenshots of them.
+
+## Present it
+
+Follow the script from [step 11](11-script.md): six questions, about ten minutes. Keep the fallback screenshots ready.
+
+## Clean up
+
+When you are finished, run `sql/99_teardown.sql` after replacing the names. It removes the demo database, warehouse and, if you created them, the email objects and roles.
