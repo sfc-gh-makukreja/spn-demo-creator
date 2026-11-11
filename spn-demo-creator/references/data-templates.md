@@ -124,7 +124,7 @@ SELECT r.*,
 FROM raw r LEFT JOIN customers c ON r.customer_id = c.customer_id;
 ```
 
-Pre-compute helper columns (an age group, a day of week) so the agent can find the drivers without date maths. Keep the dimension you want to rule out (region, department, staffing) on a flat rate with no thresholds.
+Pre-compute helper columns (an age group, a day of week) so the agent can find the drivers without date maths. Keep the dimension you want to rule out (region, department, staffing) on a flat rate with no thresholds, and assign it round-robin within each driver segment (for example `MOD(ROW_NUMBER() OVER (PARTITION BY lead_time_band ORDER BY id), 6)`). Random assignment on a few hundred rows gives noisy rates, such as 18 to 32 percent, and the "no effect" act fails.
 
 Order: create dimension tables first, load them (in parallel is fine), then load the fact tables. `USE DATABASE` before `CREATE SCHEMA`.
 

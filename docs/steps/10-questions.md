@@ -1,23 +1,24 @@
 # 10. Sample questions
 
-**Goal:** Write six questions that build on each other.
+**Goal:** Check what was built and get six questions that build on each other.
 
 ## What happens
 
-The questions go: what, what, why (rule out the obvious), why (find the real drivers with documents), how, and how with an action. The skill presents the questions with expected answers.
+The skill tested the semantic view with Cortex Analyst for question 1, checked that the search service was ACTIVE, and summarised what it built:
+
+- **Data:** 60 products, 30 suppliers, 6 distribution centres, 900 weekly stock positions, 600 purchase orders, 150 supplier notices
+- **Overall:** about 25% of stock positions are stock-outs, costing about AUD 5.9M in lost sales
+- **Rule out:** every distribution centre sits between 24% and 27%
+- **Real drivers:** suppliers with lead times over 45 days run at 52% against 8.5% for short lead times; cold-chain products 36% against 20%; both together 68%
+
+![Final summary](../assets/img/10-final-summary.png)
 
 ## What you do
 
-> Review the six questions.
+Read the summary, then check the agent in Snowsight.
 
-## Output
+!!! warning "Gotcha: the agent itself was not tested"
+    The skill ran Cortex Analyst on question 1 but did not ask the agent a question. Open **AI & ML > Agents**, pick the agent, and ask question 1 yourself. The skill now tries `DATA_AGENT_RUN` and says when it could not.
 
-Six sample questions. Optionally, roles from `sql/01_roles.sql`.
-
-## Screenshot
-
-!!! info "Screenshot to add"
-    Save as `docs/assets/img/10-questions.png`, then replace this block with:
-    `![10. Sample questions](../assets/img/10-questions.png)`
-
-<!-- screenshot: 10-questions.png -->
+!!! note "Question 6"
+    With no email tool, question 6 ends with an action plan instead of an email.

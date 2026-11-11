@@ -4,20 +4,16 @@
 
 ## What happens
 
-The skill sanitizes the name, checks whether the schema exists, and creates it under `COWORK_DEMOS` (or your database). It also writes a short `plan.md` with the story.
+The skill checked whether the database existed (the first query "failed" because it did not, which is expected), then asked to create the database, warehouse and schema.
+
+![Create the database, warehouse and schema](../assets/img/04-schema-create.png)
 
 ## What you do
 
-> Confirm the schema name.
+Click **Allow**. The schema is named after the demo: `COWORK_EBOS_DEMO.EBOS_SUPPLIER_STOCKOUTS`.
 
-## Output
+!!! note "A failed first query is normal"
+    "Ran 1 query - 1 failed" at this point is the existence check. It is not an error.
 
-`COWORK_DEMOS.<DEMO_NAME>` and `plan.md`.
-
-## Screenshot
-
-!!! info "Screenshot to add"
-    Save as `docs/assets/img/04-schema.png`, then replace this block with:
-    `![4. Create the schema](../assets/img/04-schema.png)`
-
-<!-- screenshot: 04-schema.png -->
+!!! warning "Is the setup SQL needed?"
+    Not for this step. `sql/00_setup.sql` is only needed for the optional email tool, or if you want the default names. The skill creates the database, warehouse and schema itself when your role allows it.

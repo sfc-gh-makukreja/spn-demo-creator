@@ -110,7 +110,7 @@ Present a short audience brief: roles, priorities, likely pain points, preferred
    CREATE SCHEMA IF NOT EXISTS <DATABASE>.<DEMO_NAME>;
    USE SCHEMA <DATABASE>.<DEMO_NAME>;
    ```
-4. Write a short `plan.md` in the user's project folder with the mode, use case, names and the story (the three acts from Step 5).
+4. Write a short `plan.md` in the user's project folder with the mode, use case, names and the story (the three acts from Step 5). It is the record the user reviews at Step 6, so do not skip it. If no project folder is open, ask the user where to save files before writing anything.
 
 ### Step 5: Design the data model
 
@@ -131,8 +131,10 @@ Load `references/data-templates.md`.
 - In customer mode, use the customer's real product names and regions. In industry mode, use realistic but fictional organizations. Never use real personal data.
 - 200 to 1000 rows per structured table and 50 to 250 documents. Dates in the last 12 to 24 months.
 - Plant the story contract from Step 5. Do not use plain random values for the driver columns; use one random roll per row and thresholds per segment (see `references/data-templates.md`) so the target rates hold.
-- Create tables one at a time, in dependency order (dimensions first). Load dimensions in parallel, then load the fact tables in order, because facts depend on dimension helper columns.
-- Execute the CREATE TABLE and INSERT statements, then verify row counts.
+- Run one statement per SQL call and use fully qualified names (`<DATABASE>.<DEMO_NAME>.<TABLE>`). A script of several `CREATE TABLE ... AS` statements can fail partway without an obvious error (one table was missing in testing), and later steps then break.
+- Create tables in dependency order (dimensions first), then load the fact tables, because facts depend on dimension helper columns.
+- After the loads, confirm every table exists and has the expected row count before going on.
+- Make the dimension you want to rule out (Step 5, act 2) balanced by construction, for example by assigning it round-robin within each driver segment. Random assignment on a few hundred rows gives noisy rates (18 to 32 percent in testing) and the act then fails to show "no effect".
 - **Verify the patterns.** Run one GROUP BY query per act (overall split, the ruled-out dimension, each driver) and compare to the target rates. If they are significantly off, adjust the thresholds and reload. ⚠️ **STOP and show the user the verification results.**
 
 Steps 7 to 10 then run in sequence. Stop at the first error and report it. They create objects only inside the demo schema.
@@ -146,13 +148,13 @@ Use the `semantic-view` skill if available. Rules that commonly trip people up:
 - Relationships use `relationship_columns`. Referenced tables must have a `primary_key`.
 - Include 8 verified queries (the 6 demo questions plus 2 extras) and one business metric that shows a KPI calculation.
 
-Create the view from the YAML with `SYSTEM$CREATE_SEMANTIC_VIEW_FROM_YAML`. Use one of these forms; if one fails, check the current Snowflake documentation and try the other.
+Add the verified queries to the YAML before you create the view. Do not defer them; the final report must not say they are missing.
 
-Inline (the third argument `FALSE` means create, not verify only):
+Create the view from the YAML with `SYSTEM$CREATE_SEMANTIC_VIEW_FROM_YAML`. The inline form is the one tested, so use it first (the third argument `FALSE` means create, not verify only). The tool may report "could not fully classify one or more statements; treated as a write" and ask the user to Allow it; that is expected.
 ```sql
 CALL SYSTEM$CREATE_SEMANTIC_VIEW_FROM_YAML('<DATABASE>.<DEMO_NAME>', $$<YAML>$$, FALSE);
 ```
-From a stage:
+If the inline form fails, try the stage form:
 ```sql
 CREATE STAGE IF NOT EXISTS <DATABASE>.<DEMO_NAME>.SEMANTIC_MODELS;
 -- upload the YAML with PUT or snow stage copy
@@ -181,11 +183,11 @@ Wait 2 to 3 minutes for indexing. The service must be ACTIVE.
 ### Step 9: Create the Cortex Agent
 
 1. You must have a one or two sentence agent description. Ask if missing. It becomes the agent `COMMENT`.
-2. Start from `references/agent-spec-template.yaml` and fill in the names. Tools: Cortex Analyst (`cortex_analyst_text_to_sql`), Cortex Search (`cortex_search`), `web_search`, `data_to_chart`, and optionally `send_email`, a `generic` tool that calls `<DATABASE>.PUBLIC.SEND_MAIL` (created by `sql/00_setup.sql`).
+2. Start from `references/agent-spec-template.yaml` and fill in the names. Tools: Cortex Analyst (`cortex_analyst_text_to_sql`), Cortex Search (`cortex_search`), `data_to_chart`, `web_search` (include it unless web search is not enabled for agents), and optionally `send_email`, a `generic` tool that calls `<DATABASE>.PUBLIC.SEND_MAIL` (created by `sql/00_setup.sql`). In the final report, list every tool you left out and why.
 3. Custom tools must use type `generic`, and their `tool_resources` need `type`, `execution_environment` and `identifier`.
 4. Include at least 5 `sample_questions` that follow the demo story (what, what, why, why, how).
 5. Create the agent in the demo schema with `CREATE OR REPLACE AGENT ... COMMENT = '...' FROM SPECIFICATION $$...$$`.
-6. Validate with `SHOW AGENTS IN SCHEMA <DATABASE>.<DEMO_NAME>` and a test question. If the agent does not appear in Snowsight, tell the user and check the current documentation for where agents must be created for their account. If it fails at runtime, check that the semantic view and the search service are both active and that the role has USAGE on the agent.
+6. Validate with `SHOW AGENTS IN SCHEMA <DATABASE>.<DEMO_NAME>`, then ask the agent question 1. Testing only the semantic view with Cortex Analyst does not prove the agent works. One way is `SELECT SNOWFLAKE.CORTEX.DATA_AGENT_RUN('<DATABASE>.<DEMO_NAME>.<AGENT_NAME>', $${"messages":[{"role":"user","content":[{"type":"text","text":"<question 1>"}]}]}$$);`. If you cannot run it, say so and ask the user to test in Snowsight. If the agent does not appear in Snowsight, tell the user and check the current documentation for where agents must be created for their account. If it fails at runtime, check that the semantic view and the search service are both active and that the role has USAGE on the agent.
 
 ### Step 10: Sample questions
 
@@ -208,7 +210,7 @@ If other people will use the demo, create an admin role and a user role (see `sq
 
 ### Step 11: Demo script
 
-Load `references/demo-script-template.md`. Write a timed script: opening (30 s), context (1 min), questions 1 and 2 (2 min), questions 3 and 4 (3 min), questions 5 and 6 (3 min), closing (1 min). For each question include the exact wording, the expected answer, talking points and the transition. Save it as a local file. ⚠️ **STOP for review.**
+Load `references/demo-script-template.md`. Write a timed script: opening (30 s), context (1 min), questions 1 and 2 (2 min), questions 3 and 4 (3 min), questions 5 and 6 (3 min), closing (1 min). For each question include the exact wording, the expected answer, talking points and the transition. Save it in the user's project folder (ask for a folder if none is open; do not write to the home directory). ⚠️ **STOP for review.**
 
 ## Stopping points
 

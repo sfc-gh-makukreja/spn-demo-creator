@@ -1,23 +1,23 @@
 # 1. Research
 
-**Goal:** Understand the industry or customer well enough to propose realistic use cases.
+**Goal:** Understand the customer well enough to propose realistic use cases.
 
 ## What happens
 
-The skill uses web search to gather trends, data-intensive processes, pain points and typical personas (industry mode), or the company overview, products, news and competitors (customer mode). It summarizes the findings and asks you to confirm or correct them.
+The skill fetched two pages from the customer's website and summarised them:
+
+> The largest diversified Australasian healthcare, medical and pharmaceutical wholesaler and distributor, plus Animal Care (including Lyppard vet wholesale). 6,200+ staff, 136 locations across AU, NZ and SE Asia, listed on NZX and ASX. Healthcare covers Symbion and Healthcare Distribution, Retail Pharmacy Brands, and Medical Technology.
+
+It asks you to confirm the summary.
+
+![Research summary and audience question](../assets/img/01-research-and-audience.png)
 
 ## What you do
 
-> Confirm the summary, or correct anything that is wrong.
+Choose **Correct, continue**, or **Needs corrections** and say what to change.
 
-## Output
+!!! warning "Check the research"
+    The summary comes from the website and web search. Correct anything wrong now; the data, names and story are all built from it.
 
-A context summary you have approved.
-
-## Screenshot
-
-!!! info "Screenshot to add"
-    Save as `docs/assets/img/01-research.png`, then replace this block with:
-    `![1. Research](../assets/img/01-research.png)`
-
-<!-- screenshot: 01-research.png -->
+!!! note "No web search?"
+    If web search is unavailable, the skill says so and marks the findings as unverified.

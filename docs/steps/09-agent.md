@@ -4,20 +4,16 @@
 
 ## What happens
 
-You provide a one or two sentence agent description. The skill creates the agent with Analyst, Search, web search, charts and optional email, plus instructions and sample questions. It validates with `SHOW AGENTS` and a test question.
+The skill created the agent `EBOS_SUPPLY_AGENT` with its instructions, five sample questions and its tools. The specification is shown for you to allow:
+
+![Agent specification](../assets/img/09-agent.png)
 
 ## What you do
 
-> Give a short description of what the agent does.
+Click **Allow**. Read the tools list in the specification first.
 
-## Output
+!!! warning "Gotcha: not every tool is included"
+    This agent has **Analyst, Search and data_to_chart**. It has no `web_search` and no `send_email`. Email was skipped because it was not set up. The skill now includes `web_search` by default and lists any tool it leaves out.
 
-A working agent.
-
-## Screenshot
-
-!!! info "Screenshot to add"
-    Save as `docs/assets/img/09-agent.png`, then replace this block with:
-    `![9. Cortex Agent](../assets/img/09-agent.png)`
-
-<!-- screenshot: 09-agent.png -->
+!!! tip "Email is optional"
+    Run `sql/00_setup.sql` as ACCOUNTADMIN to set up the notification integration and `SEND_MAIL` if you want question 6 to send a real email. Recipients must be verified in the account.

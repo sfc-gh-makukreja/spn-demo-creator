@@ -1,23 +1,21 @@
 # 2. Audience
 
-**Goal:** Tailor the demo to the people in the room.
+**Goal:** Tailor the demo to the people who will watch it.
 
 ## What happens
 
-The skill asks about the audience. In industry mode you describe roles only. In customer mode you may name attendees, and the skill uses only public professional information. It presents a short brief: priorities, likely pain points, level of detail, what to avoid. **Stop: approve the brief.**
+The same form asks whether to tailor the demo to specific attendees. The options are:
 
-## What you do
+- **Roles only:** describe the roles in the room, such as supply chain and operations leaders. No individual research.
+- **Skip:** no tailoring, go straight to three use cases.
+- **Other:** tell the skill what to do.
 
-> The room is partner SEs and solution architects.
+![Audience question, shown with the research summary](../assets/img/01-research-and-audience.png)
 
-## Output
+This run chose **Skip**.
 
-An approved audience brief.
+!!! tip "Use Roles only for a partner session"
+    For a room of partner SEs and architects, **Roles only** gives sharper use cases than Skip, with no research on named people.
 
-## Screenshot
-
-!!! info "Screenshot to add"
-    Save as `docs/assets/img/02-audience.png`, then replace this block with:
-    `![2. Audience](../assets/img/02-audience.png)`
-
-<!-- screenshot: 02-audience.png -->
+!!! note "Privacy"
+    The skill never researches named individuals in industry mode. In customer mode it only does so if you provide names, using public professional information only.

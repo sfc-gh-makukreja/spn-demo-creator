@@ -2,7 +2,7 @@
 
 About ten minutes.
 
-1. Open Snowsight: **AI & ML > Agents** and choose your agent.
+1. Open Snowsight: **AI & ML > Agents** and choose your agent (in the EBOS run, `EBOS_SUPPLY_AGENT`).
 2. Warm it up with one question ten minutes before.
 3. Follow the demo script. Ask the six questions in order.
 4. Keep the fallback screenshots ready.
