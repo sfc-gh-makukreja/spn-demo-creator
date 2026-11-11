@@ -15,7 +15,7 @@ Sanitised from an internal skill for Snowflake partners. The workflow is the sam
 
 ## Install
 
-Copy this folder into your Cortex Code skills folder, for example `~/.snowflake/cortex/skills/spn-demo-creator/`, then ask Cortex Code: "Create a CoWork demo for the <industry> industry".
+In CoCo Desktop, open **Agent Settings > Skills**, click **+** next to **GitHub Skills**, and enter `sfc-gh-makukreja/spn-demo-creator`. Then ask: "Create a CoWork demo for the <industry> industry". Other options are in the [docs](https://sfc-gh-makukreja.github.io/spn-demo-creator/install/).
 
 ## Before you run it
 
