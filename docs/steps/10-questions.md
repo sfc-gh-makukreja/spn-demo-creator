@@ -18,7 +18,7 @@ The skill tested the semantic view with Cortex Analyst for question 1, checked t
 Read the summary, then check the agent in Snowsight.
 
 !!! warning "Gotcha: the agent itself was not tested"
-    The skill ran Cortex Analyst on question 1 but did not ask the agent a question. Open **AI & ML > Agents**, pick the agent, and ask question 1 yourself. The skill now tries `DATA_AGENT_RUN` and says when it could not.
+    The skill ran Cortex Analyst on question 1 but did not ask the agent a question. Run [step 12](12-publish.md) to test and publish it, or ask question 1 yourself in CoWork. The skill now tries `DATA_AGENT_RUN` and says when it could not.
 
 !!! note "Question 6"
     With no email tool, question 6 ends with an action plan instead of an email.

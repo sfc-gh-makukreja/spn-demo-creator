@@ -48,6 +48,7 @@ nav:
       - 9. Cortex Agent: steps/09-agent.md
       - 10. Sample questions: steps/10-questions.md
       - 11. Demo script: steps/11-script.md
+      - 12. Test and publish: steps/12-publish.md
   - Run the demo: run-the-demo.md
   - Gotchas: gotchas.md
   - Troubleshooting: troubleshooting.md

@@ -36,7 +36,10 @@ Everything that went wrong or surprised us in the first run, in one place.
     This run created the semantic view without verified queries and the agent without `web_search`. Both are fixed in the skill, but check the final report for anything it says it left out.
 
 !!! warning "The agent was not asked a question"
-    Only Cortex Analyst was tested. Ask question 1 in Snowsight before you present.
+    Only Cortex Analyst was tested. Use step 12 (test and publish) or ask question 1 in CoWork before you present.
+
+!!! warning "Agent missing from CoWork"
+    If the account already has `SNOWFLAKE_INTELLIGENCE_OBJECT_DEFAULT`, add the agent to it with `ALTER SNOWFLAKE INTELLIGENCE ... ADD AGENT`.
 
 !!! danger "Public repo, synthetic data only"
     Screenshots can show connection names and usernames. Redact them before you publish.

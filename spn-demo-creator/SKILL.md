@@ -212,6 +212,14 @@ If other people will use the demo, create an admin role and a user role (see `sq
 
 Load `references/demo-script-template.md`. Write a timed script: opening (30 s), context (1 min), questions 1 and 2 (2 min), questions 3 and 4 (3 min), questions 5 and 6 (3 min), closing (1 min). For each question include the exact wording, the expected answer, talking points and the transition. Save it in the user's project folder (ask for a folder if none is open; do not write to the home directory). ⚠️ **STOP for review.**
 
+### Step 12: Test and publish to CoWork
+
+1. Ask each demo question with `cortex agents run <DATABASE>.<DEMO_NAME>.<AGENT_NAME> "<question>"` (the `agent-studio` skill does this if available). Report any answer that does not match the story contract.
+2. Set a display name: `ALTER AGENT ... SET PROFILE = '{"display_name": "<name>"}'`.
+3. Run `SHOW SNOWFLAKE INTELLIGENCES`. If `SNOWFLAKE_INTELLIGENCE_OBJECT_DEFAULT` exists, run `ALTER SNOWFLAKE INTELLIGENCE SNOWFLAKE_INTELLIGENCE_OBJECT_DEFAULT ADD AGENT <fqn>`. Otherwise create it first.
+4. Give the user `https://ai.snowflake.com` and the display name. State that the agent runs under the user's own role; other users need grants (see `sql/01_roles.sql`).
+5. ⚠️ Run each statement only after the user clicks Allow. Never include account identifiers or usernames in anything you save.
+
 ## Stopping points
 
 - ✋ Step 1B: customer website missing

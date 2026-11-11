@@ -2,7 +2,7 @@
 
 About ten minutes.
 
-1. Open Snowsight: **AI & ML > Agents** and choose your agent (in the EBOS run, `EBOS_SUPPLY_AGENT`).
+1. Open `https://ai.snowflake.com` (Snowflake CoWork) and choose your agent from the picker. See [step 12](steps/12-publish.md). You can also use Snowsight: **AI & ML > Agents**. In the EBOS run the agent was (in the EBOS run, `EBOS_SUPPLY_AGENT`).
 2. Warm it up with one question ten minutes before.
 3. Follow the demo script. Ask the six questions in order.
 4. Keep the fallback screenshots ready.
@@ -19,5 +19,4 @@ About ten minutes.
 
 Run `sql/99_teardown.sql` after replacing the names.
 
-<!-- screenshot: run-01-agent-in-snowsight.png -->
-<!-- screenshot: run-02-answer.png -->
+![Answer in CoWork](assets/img/12-cowork-answer.png)
