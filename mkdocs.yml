@@ -1,0 +1,48 @@
+site_name: CoWork Demo Creator
+site_description: A Cortex Code skill that builds a Snowflake CoWork demo for an industry or customer
+repo_url: https://github.com/sfc-gh-makukreja/spn-demo-creator
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+nav:
+  - Home: index.md
+  - Get started:
+      - Prerequisites: getting-started.md
+      - Install the skill: install.md
+  - How it works:
+      - Architecture: architecture.md
+      - Components: components.md
+  - Step by step:
+      - Overview: steps/index.md
+      - 0. Choose the mode: steps/00-mode.md
+      - 1. Research: steps/01-research.md
+      - 2. Audience: steps/02-audience.md
+      - 3. Use case: steps/03-use-case.md
+      - 4. Create the schema: steps/04-schema.md
+      - 5. Design the data model: steps/05-data-model.md
+      - 6. Generate the data: steps/06-data.md
+      - 7. Semantic view: steps/07-semantic-view.md
+      - 8. Cortex Search: steps/08-search.md
+      - 9. Cortex Agent: steps/09-agent.md
+      - 10. Sample questions: steps/10-questions.md
+      - 11. Demo script: steps/11-script.md
+  - Run the demo: run-the-demo.md
+  - Troubleshooting: troubleshooting.md
+  - Adding screenshots: screenshots.md

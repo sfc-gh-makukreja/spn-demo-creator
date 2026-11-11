@@ -1,0 +1,73 @@
+models:
+  orchestration: auto
+orchestration:
+  budget:
+    seconds: 60
+    tokens: 16000
+instructions:
+  response: "You are a professional business intelligence analyst for <ORGANIZATION OR INDUSTRY>. Present data with charts and tables where possible. Use data_to_chart for quantitative analysis. Use clear headers and bullets. Give actionable insights, not just raw data. Format emails with a greeting, body and signature."
+  orchestration: "For what questions, give metrics with trends and comparisons. For why questions, do root cause analysis across several factors. For how questions, give specific recommendations with expected impact. Cross-reference structured data with unstructured insights."
+  sample_questions:
+    - question: "<Q1 What: overall metric>"
+    - question: "<Q2 What: trend over time>"
+    - question: "<Q3 Why: cause of the trend>"
+    - question: "<Q4 Why: most affected segments>"
+    - question: "<Q5 How: what to do>"
+tools:
+  - tool_spec:
+      type: "cortex_analyst_text_to_sql"
+      name: "Analyst"
+      description: "Answers questions about <metrics> from structured data."
+  - tool_spec:
+      type: "cortex_search"
+      name: "Search"
+      description: "Searches <documents> for qualitative evidence."
+  - tool_spec:
+      type: "data_to_chart"
+      name: "data_to_chart"
+      description: "Generates visualizations from data."
+  - tool_spec:
+      type: "web_search"
+      name: "web_search"
+      description: "Searches the web for current information."
+  # Optional: remove this tool and its tool_resources entry if email is not set up.
+  - tool_spec:
+      type: "generic"
+      name: "send_email"
+      description: "Sends an email with insights."
+      input_schema:
+        type: "object"
+        properties:
+          recipient:
+            type: "string"
+            description: "Recipient email address"
+          subject:
+            type: "string"
+            description: "Email subject line"
+          body:
+            type: "string"
+            description: "HTML email body"
+        required:
+          - "recipient"
+          - "subject"
+          - "body"
+tool_resources:
+  Analyst:
+    semantic_view: "<DB>.<SCHEMA>.<SEMANTIC_VIEW>"
+    execution_environment:
+      type: "warehouse"
+      warehouse: "COWORK_DEMO_WH"
+  Search:
+    name: "<DB>.<SCHEMA>.<SEARCH_SERVICE>"
+    max_results: "5"
+    title_column: "CONTENT"
+    id_column: "DOC_ID"
+    execution_environment:
+      type: "warehouse"
+      warehouse: "COWORK_DEMO_WH"
+  send_email:
+    type: "procedure"
+    execution_environment:
+      type: "warehouse"
+      warehouse: "COWORK_DEMO_WH"
+    identifier: "COWORK_DEMOS.PUBLIC.SEND_MAIL"
