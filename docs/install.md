@@ -12,8 +12,9 @@ cortex skill add sfc-gh-makukreja/spn-demo-creator
 
 You should see `Skills found: spn-demo-creator`. Then open **Settings > Skills** in CoCo Desktop and search for `spn-demo`. The skill appears with the GitHub icon and a toggle that is on.
 
-<!-- screenshot: install-01-cli-add.png -->
-<!-- screenshot: install-02-skill-listed.png -->
+![Running cortex skill add in the CoCo Desktop terminal](assets/img/install-01-cli-add.png)
+
+![spn-demo-creator listed in Settings > Skills](assets/img/install-02-skill-listed.png)
 
 !!! note "Shared with Desktop"
     Skill settings are stored in `~/.snowflake/cortex/skills.json` and shared between CoCo Desktop and the `cortex` command-line tool. A skill added in one is available in the other. To get later changes, run the same command again, or use **Update** on the skill.
