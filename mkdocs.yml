@@ -3,14 +3,19 @@ site_description: A Cortex Code skill that builds a Snowflake CoWork demo for an
 repo_url: https://github.com/sfc-gh-makukreja/spn-demo-creator
 theme:
   name: material
+  logo: images/snowflake-symbol-white.png
+  favicon: images/snowflake-symbol.png
+  palette:
+    primary: light blue
   features:
-    - navigation.sections
-    - navigation.top
+    - navigation.footer
     - content.code.copy
-    - content.tabs.link
+    - toc.integrate
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - toc:
+      permalink: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
