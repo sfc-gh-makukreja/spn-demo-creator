@@ -2,28 +2,36 @@
 
 The easiest way is to add it from GitHub in CoCo Desktop. CoCo clones the repo and finds the skill for you.
 
-## Option 1: CoCo Desktop (recommended)
+## Option 1: One command in the terminal (recommended)
 
-1. Open **Agent Settings** (left sidebar) and select **Skills**.
-2. In the **GitHub Skills** section, click **+** (Add from GitHub).
-3. Enter the source and click **Add**:
+Open the terminal in CoCo Desktop (or any terminal) and run:
 
-    ```text
-    sfc-gh-makukreja/spn-demo-creator
-    ```
+```bash
+cortex skill add sfc-gh-makukreja/spn-demo-creator
+```
 
-    You can also use `https://github.com/sfc-gh-makukreja/spn-demo-creator`, or pin a branch with `sfc-gh-makukreja/spn-demo-creator#main`.
+You should see `Skills found: spn-demo-creator`. Then open **Settings > Skills** in CoCo Desktop and search for `spn-demo`. The skill appears with the GitHub icon and a toggle that is on.
 
-4. The skill `spn-demo-creator` now appears under **GitHub Skills**.
-5. To get later changes, select the skill and click **Update**, or use **Update all**.
-
-<!-- screenshot: install-01-add-from-github.png -->
+<!-- screenshot: install-01-cli-add.png -->
 <!-- screenshot: install-02-skill-listed.png -->
 
-!!! note "Shared with the CLI"
-    Skill settings are stored in `~/.snowflake/cortex/skills.json` and shared between CoCo Desktop and the `cortex` command-line tool. A skill added in one is available in the other.
+!!! note "Shared with Desktop"
+    Skill settings are stored in `~/.snowflake/cortex/skills.json` and shared between CoCo Desktop and the `cortex` command-line tool. A skill added in one is available in the other. To get later changes, run the same command again, or use **Update** on the skill.
 
-## Option 2: Local folder
+## Option 2: Add from GitHub in CoCo Desktop
+
+1. Open **Agent Settings** (left sidebar) and select **Skills**.
+2. Click **+** and choose Add from GitHub.
+3. Enter `sfc-gh-makukreja/spn-demo-creator` and click **Add**.
+
+![The Add menu in Settings > Skills](assets/img/install-02a-add-from-github-menu.png)
+
+!!! warning "Known issue"
+    Some builds of CoCo Desktop show `Error adding skill: process is not defined` in this dialog. The repository is fine. Use Option 1 instead; the skill then appears in Desktop.
+
+![Error adding skill: process is not defined](assets/img/install-02b-process-error.png)
+
+## Option 3: Local folder
 
 Use this if you cannot reach GitHub or want to edit the skill.
 
@@ -37,7 +45,7 @@ Use this if you cannot reach GitHub or want to edit the skill.
 
 CoCo scans up to 10 folders deep for a file named exactly `SKILL.md`.
 
-## Option 3: Share inside your company
+## Option 4: Share inside your company
 
 To give your own team the skill, publish it from the Skills tab: **Publish to stage** (a Snowflake stage you control) or **Publish to Skills Catalog** (a versioned object, with access through Snowflake roles).
 
