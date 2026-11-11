@@ -1,5 +1,7 @@
 # spn-demo-creator
 
+Docs: https://sfc-gh-makukreja.github.io/spn-demo-creator/
+
 A Cortex Code skill that builds a Snowflake CoWork demo end to end: synthetic data, a semantic view, a Cortex Search service, a Cortex Agent and a timed demo script. It works for a named customer or for a whole industry.
 
 Sanitised from an internal skill for Snowflake partners. The workflow is the same, but nothing is tied to a specific account, connection or shared database, and the supporting files are included.
