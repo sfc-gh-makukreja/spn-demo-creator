@@ -7,7 +7,7 @@
 The skill tested the semantic view with Cortex Analyst for question 1, checked that the search service was ACTIVE, and summarised what it built:
 
 - **Data:** 60 products, 30 suppliers, 6 distribution centres, 900 weekly stock positions, 600 purchase orders, 150 supplier notices
-- **Overall:** about 25% of stock positions are stock-outs, costing about AUD 5.9M in lost sales
+- **Overall:** about 25% of stock positions are stock-outs, costing about NZD 5.9M in lost sales
 - **Rule out:** every distribution centre sits between 24% and 27%
 - **Real drivers:** suppliers with lead times over 45 days run at 52% against 8.5% for short lead times; cold-chain products 36% against 20%; both together 68%
 
